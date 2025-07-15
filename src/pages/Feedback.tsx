@@ -29,7 +29,7 @@ const Feedback = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/feedbacks');
+      const response = await fetch('/api/feedbacks');
       if (response.ok) {
         const data = await response.json();
         setFeedbacks(data);
@@ -52,7 +52,7 @@ const Feedback = () => {
     setSubmitting(true);
     
     try {
-      const response = await fetch('http://localhost:3001/api/feedbacks', {
+      const response = await fetch('/api/feedbacks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

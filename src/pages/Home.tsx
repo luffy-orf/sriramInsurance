@@ -20,8 +20,8 @@ const Home = () => {
   }, []);
 
   const fetchFeedbacks = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/feedbacks');
+          try {
+        const response = await fetch('/api/feedbacks');
       if (response.ok) {
         const data = await response.json();
         // Get latest 3 feedbacks for home page

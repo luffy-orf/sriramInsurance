@@ -23,7 +23,7 @@ const Enquiry = () => {
     setSubmitting(true);
     
     try {
-      const response = await fetch('http://localhost:3001/api/inquiries', {
+      const response = await fetch('/api/inquiries', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

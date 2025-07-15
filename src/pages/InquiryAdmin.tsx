@@ -24,7 +24,7 @@ const InquiryAdmin = () => {
 
   const fetchInquiries = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/inquiries');
+      const response = await fetch('/api/inquiries');
       if (response.ok) {
         const data = await response.json();
         setInquiries(data);
@@ -38,7 +38,7 @@ const InquiryAdmin = () => {
 
   const updateInquiryStatus = async (id: number, status: string) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/inquiries/${id}`, {
+      const response = await fetch(`/api/inquiries/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
