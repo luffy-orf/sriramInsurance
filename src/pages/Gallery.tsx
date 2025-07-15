@@ -18,8 +18,9 @@ const Gallery = () => {
 
   // Define the local images from the gallery-images folder
   const localImages = [
+    'EMI_INSURANCE.jpg', // Featured - Most Important
     '1740749396740.jpg',
-    '1740749396742.jpg',
+    '1740749396742.jpg', 
     '1740749396743.jpg',
     '1740749396745.jpg',
     '1740749396747.jpg'
@@ -27,6 +28,12 @@ const Gallery = () => {
 
   // Professional image details for insurance business
   const imageDetails: Record<string, { title: string; description: string; category?: string; date?: string }> = {
+    'EMI_INSURANCE.jpg': {
+      title: 'EMI Protection Insurance',
+      description: 'Comprehensive EMI Protection Insurance safeguarding your loan repayments during job loss, disability, or critical illness. Secure your family\'s financial future with our specialized EMI insurance solutions covering home loans, car loans, and personal loans.',
+      category: 'Featured',
+      date: '2024'
+    },
     '1740749396740.jpg': {
       title: 'Shriram Insurance Office',
       description: 'Our modern office building in Khopoli providing comprehensive insurance services to clients across Navi Mumbai and surrounding areas.',
@@ -96,17 +103,17 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 px-4">
+      {/* Hero Section - Mobile Optimized */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 md:py-20 px-4">
         <div className="container mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <Camera className="h-16 w-16 text-yellow-400 mx-auto mb-6" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Gallery</h1>
-            <p className="text-xl md:text-2xl font-light max-w-3xl mx-auto">
+            <Camera className="h-12 md:h-16 w-12 md:w-16 text-yellow-400 mx-auto mb-4 md:mb-6" />
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">Gallery</h1>
+            <p className="text-base md:text-xl lg:text-2xl font-light max-w-3xl mx-auto">
               Discover our journey through images and moments
             </p>
           </motion.div>
@@ -114,18 +121,18 @@ const Gallery = () => {
       </section>
 
       {/* Gallery Grid */}
-      <section className="py-16 px-4">
+      <section className="py-8 md:py-16 px-4">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4">
               Our Visual Story
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-sm md:text-lg text-gray-600">
               Take a look at our office, team, and services in action
             </p>
           </motion.div>
@@ -136,8 +143,71 @@ const Gallery = () => {
               <p className="text-gray-600 mt-4">Loading gallery images...</p>
             </div>
           ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {galleryImages.map((image, index) => (
+          <>
+            {/* Featured EMI Insurance Section */}
+            {galleryImages.find(img => img.category === 'Featured') && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="mb-12"
+              >
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl md:text-3xl font-bold text-blue-600 mb-2">🔥 Featured Service</h3>
+                  <p className="text-gray-600">Our most important insurance solution for your financial security</p>
+                </div>
+                
+                {(() => {
+                  const featuredImage = galleryImages.find(img => img.category === 'Featured');
+                  return featuredImage ? (
+                    <motion.div
+                      whileHover={{ y: -8 }}
+                      className="max-w-4xl mx-auto bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-2xl overflow-hidden border-2 border-blue-200 cursor-pointer"
+                      onClick={() => openModal(featuredImage)}
+                    >
+                      <div className="md:flex items-center">
+                        <div className="md:w-1/2 relative group">
+                          <img
+                            src={featuredImage.src}
+                            alt={featuredImage.title}
+                            className="w-full h-64 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = 'https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=EMI+Insurance';
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-transparent"></div>
+                          <div className="absolute top-4 left-4">
+                            <span className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-pulse">
+                              🌟 MOST IMPORTANT
+                            </span>
+                          </div>
+                        </div>
+                        <div className="md:w-1/2 p-8">
+                          <h4 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                            {featuredImage.title}
+                          </h4>
+                          <p className="text-gray-700 mb-6 leading-relaxed">
+                            {featuredImage.description}
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-blue-600 font-semibold">Click to view details</span>
+                            <ZoomIn className="h-6 w-6 text-blue-600" />
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ) : null;
+                })()}
+              </motion.div>
+            )}
+
+            {/* Regular Gallery Grid */}
+            <div className="mb-8">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-6 text-center">More From Our Gallery</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {galleryImages.filter(img => img.category !== 'Featured').map((image, index) => (
               <motion.div
                 key={image.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -184,6 +254,7 @@ const Gallery = () => {
               </motion.div>
             ))}
           </div>
+          </>
           )}
 
           {galleryImages.length === 0 && !loading && (

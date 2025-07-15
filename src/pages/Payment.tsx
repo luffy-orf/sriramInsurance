@@ -86,6 +86,37 @@ Contact us today for the best insurance solutions!`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
   };
 
+  const getCurrentTime = () => {
+    const now = new Date();
+    return now.toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
+  };
+
+  const handleWhatsAppPayment = () => {
+    const currentTime = getCurrentTime();
+    const message = `🏛️ *SHRIRAM INSURANCE SERVICES*
+💳 *PAYMENT ASSISTANCE REQUEST*
+
+📅 Date & Time: ${currentTime}
+📱 Contact: 9822123088
+
+💬 Hello! I need assistance with payment processing for my insurance policy. Could you please guide me through the payment options and process?
+
+🔹 I'm ready to make payment for my insurance premium
+🔹 Please help me with the secure payment methods
+🔹 Need details about payment confirmation
+
+Thank you! 🙏`;
+    window.open(`https://wa.me/919822123088?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -226,7 +257,7 @@ Contact us today for the best insurance solutions!`;
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => setShowQR(!showQR)}
+                    onClick={handleWhatsAppPayment}
                     className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
                   >
                     <QrCode className="h-6 w-6 inline mr-3" />

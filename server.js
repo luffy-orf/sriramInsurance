@@ -108,19 +108,33 @@ app.post('/api/inquiries', (req, res) => {
       }
       
       // Generate WhatsApp message for admin notification
-      const whatsappMessage = `🔔 *New Insurance Inquiry*
+      const currentTime = new Date().toLocaleString('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+      
+      const whatsappMessage = `🏛️ *SHRIRAM INSURANCE SERVICES*
+📧 *NEW ENQUIRY RECEIVED*
 
-📝 *Name:* ${name}
-📞 *Phone:* ${phone}
-📧 *Email:* ${email}
+👤 *Customer Details:*
+🔹 Name: ${name}
+📞 Phone: ${phone}
+📧 Email: ${email}
+📅 Date & Time: ${currentTime}
 
 💬 *Message:*
 ${message}
 
-🕒 *Submitted:* ${new Date().toLocaleString('en-IN')}
+📋 *Status:* New Inquiry
 🆔 *Inquiry ID:* ${this.lastID}
+📱 *System:* Auto-notification from website
 
-Please follow up with this potential client.`;
+Please respond to the customer! 🙏`;
 
       const whatsappUrl = `https://wa.me/919822123088?text=${encodeURIComponent(whatsappMessage)}`;
       

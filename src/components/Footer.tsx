@@ -10,8 +10,29 @@ const Footer = () => {
     window.open('mailto:ramarankhambe88@gmail.com', '_self');
   };
 
+  const getCurrentTime = () => {
+    const now = new Date();
+    return now.toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
+  };
+
   const handleWhatsApp = () => {
-    const message = "Hello! I'm interested in your insurance services.";
+    const currentTime = getCurrentTime();
+    const message = `🏛️ *SHRIRAM INSURANCE SERVICES*
+
+📅 Date & Time: ${currentTime}
+📱 Contact: 9822123088
+
+💬 Hello! I found your contact through your website and I'm interested in learning more about your insurance services. Could you please help me?
+
+Thank you! 🙏`;
     window.open(`https://wa.me/919822123088?text=${encodeURIComponent(message)}`, '_blank');
   };
 
