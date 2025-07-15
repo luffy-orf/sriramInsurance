@@ -136,21 +136,21 @@ const Gallery = () => {
               <p className="text-gray-600 mt-4">Loading gallery images...</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {galleryImages.map((image, index) => (
-                <motion.div
-                  key={image.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {galleryImages.map((image, index) => (
+              <motion.div
+                key={image.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
                   className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
                   onClick={() => openModal(image)}
-                >
-                  <div className="relative group">
-                    <img
-                      src={image.src}
-                      alt={image.title}
+              >
+                <div className="relative group">
+                  <img
+                    src={image.src}
+                    alt={image.title}
                       className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
@@ -167,8 +167,8 @@ const Gallery = () => {
                         </span>
                       </div>
                     )}
-                  </div>
-                  <div className="p-4">
+                </div>
+                <div className="p-4">
                     <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-1">
                       {image.title}
                     </h3>
@@ -180,10 +180,10 @@ const Gallery = () => {
                         {image.date}
                       </p>
                     )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
           )}
 
           {galleryImages.length === 0 && !loading && (

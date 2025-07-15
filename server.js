@@ -42,28 +42,8 @@ db.serialize(() => {
     submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )`);
 
-  // Insert preloaded feedbacks
-  db.run(`DELETE FROM feedbacks`); // Clear existing data
-  
-  const preloadedFeedbacks = [
-    {
-      name: 'सागर राऊत',
-      phone: '9594932516',
-      rating: 5,
-      message: 'मनःपूर्वक आभार! मी, सागर अंकुश राऊत (मो. 9594932516), रा. चिंचवली, शेकिन खोपोली, हे नम्रतेने सांगू इच्छितो की मार्च 2022 मध्ये मी स्टार हेल्थ इन्शुरन्स पॉलिसी श्री. रामा रणखांबे यांच्या मार्गदर्शनाखाली घेतली होती. सप्टेंबर 2023 मध्ये माझ्या कुटुंबातील पत्नी व मुलास टायफॉईड झाल्यामुळे हॉस्पिटलमध्ये उपचार करावे लागले. परंतु उपचारानंतर क्लेम प्रक्रियेमध्ये अनेक अडचणी आल्या. हॉस्पिटल कडून चालढकल करण्यात आली आणि अपुर्‍या कागदपत्रांमुळे माझा क्लेम रिजेक्ट झाला. अशा कठीण प्रसंगी श्री. रामा रणखांबे यांनी स्वतः हॉस्पिटलमध्ये येऊन सर्व कागदपत्रांची पूर्तता केली आणि माझा क्लेम मंजूर करून घेतला. त्यांच्या मुळे क्लेमची रक्कम माझ्या बँक खात्यात जमा झाली. मी त्यांचं मनापासून आभार मानतो. हेल्थ पॉलिसी घेताना योग्य सल्लागार निवडणं अत्यंत महत्त्वाचं आहे.'
-    },
-    {
-      name: 'Priyanka',
-      phone: '',
-      rating: 5,
-      message: 'Very Helpful and Cooperation'
-    }
-  ];
-
-  preloadedFeedbacks.forEach(feedback => {
-    db.run(`INSERT INTO feedbacks (name, phone, rating, message) VALUES (?, ?, ?, ?)`,
-      [feedback.name, feedback.phone, feedback.rating, feedback.message]);
-  });
+  // Clear existing data for production - no preloaded feedbacks
+  db.run(`DELETE FROM feedbacks`);
 });
 
 // API Routes
